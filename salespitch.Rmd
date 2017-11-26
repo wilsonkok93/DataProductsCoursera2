@@ -1,0 +1,46 @@
+---
+title: "Data Products Sales Pitch"
+author: "Wilson"
+date: "November 26, 2017"
+output: slidy_presentation
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+data("airquality")
+airquality$Ozone[is.na(airquality$Ozone)] = mean(airquality$Ozone, na.rm=TRUE)
+airquality$Solar.R[is.na(airquality$Solar.R)] = mean(airquality$Solar.R, na.rm=TRUE)
+```
+
+## Problem Statement
+
+This shiny app was created with the intent of allowing users to interact with the air quality dataset with a reactive interface though the app.
+
+## Air Quality Overview
+
+### Preditor
+
+The predictors used in this model are `r names(airquality)[2:6]`.
+
+### Prediction
+
+The predicted variable in this model is `r names(airquality)[1]`.
+
+## Modelling
+
+The model was created using Linear Model (LM).
+
+```{r cars, echo = TRUE, eval=FALSE}
+model <- lm(Ozone~., airquality)
+```
+
+All other columns besides Ozone are available for manipulation via HTML sliders to determine the predicted result.
+
+## Column Plot
+
+All columns can be plotted against Ozone to determine the relation between the two. An example scatterplot is shown below.
+
+```{r plot}
+plot(airquality$Wind,airquality$Ozone)
+```
+
